@@ -1,8 +1,9 @@
 #pragma once
-#include "pthread.h"
+#include <pthread.h>
 #include <stdint.h>
 #include <iostream>
 #include <queue>
+#include "TaskMutex.h"
 
 class TaskThread;
 
@@ -29,10 +30,14 @@ public:
 private:
 
 	static void *_TaskThread(void *param);
+
+	pthread_t m_pid;
+	pid_t m_tid;
+
 	std::queue<Task *> m_qTask; 
 	std::queue<Task *> m_qDelayTask;
-	pthread_t m_pid;
-	pthread_mutex_t m_TaskMutex;
-	pthread_mutex_t m_DelayTaskMutex;
+
+	TaskMutex m_TaskMutex;
+	TaskMutex m_DelayTaskMutex;
 };
 

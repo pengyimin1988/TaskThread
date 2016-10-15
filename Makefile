@@ -1,5 +1,5 @@
 TARGET=taskTest
-OBJS=main.o TaskThread.o TaskTool.o
+OBJS=main.o TaskThread.o TaskMutex.o TaskTool.o
 
 CC=g++
 $(TARGET):$(OBJS)
